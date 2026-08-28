@@ -1,0 +1,1 @@
+{"accuracy": 0.88, "disparate_impact_ratio": 0.62, "psi": 0.34, "pii_hits": 2, "p95_latency_ms": 300}

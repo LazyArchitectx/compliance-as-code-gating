@@ -1,0 +1,29 @@
+# The release policy: gates a model candidate must clear to merge.
+# Blocking gates hard-stop the merge; warn gates surface a signal without blocking.
+name: model-release-v1
+gates:
+  - id: accuracy-floor
+    metric: accuracy
+    comparator: gte
+    threshold: 0.85
+    severity: blocking
+  - id: bias-ratio-floor
+    metric: disparate_impact_ratio
+    comparator: gte
+    threshold: 0.80
+    severity: blocking
+  - id: drift-ceiling
+    metric: psi
+    comparator: lte
+    threshold: 0.20
+    severity: blocking
+  - id: pii-zero
+    metric: pii_hits
+    comparator: eq
+    threshold: 0
+    severity: blocking
+  - id: latency-budget
+    metric: p95_latency_ms
+    comparator: lte
+    threshold: 250
+    severity: warn
